@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     button {
       width: 100%;
       padding: 10px;
-      background: #333;
+      background: #1194f2;
       color: white;
       border: none;
       cursor: pointer;
@@ -107,5 +107,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <p style="text-align:center; margin-top:15px;">Don't have an account? <a href="register.php">Register</a></p>
   </div>
 </body>
+
 
 </html>
