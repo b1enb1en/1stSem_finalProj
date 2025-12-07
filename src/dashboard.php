@@ -104,9 +104,8 @@ $schedules = $db->query('
         body {
             font-family: system-ui, sans-serif;
             padding: 20px;
-            max-width: 1100px;
-            margin: 0 auto;
-            background-color: #f8f9fa;
+            max-width: 1200px;  
+            margin: auto;
         }
 
         header {
@@ -115,9 +114,8 @@ $schedules = $db->query('
             align-items: center;
             background: #343a40;
             color: #fff;
-            padding: 15px;
+            padding: 16px;
             border-radius: 8px;
-            margin-bottom: 20px;
         }
 
         h1,
@@ -135,13 +133,6 @@ $schedules = $db->query('
 
         .nav a:hover {
             color: #fff;
-        }
-
-        /* Grid Layout */
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 20px;
         }
 
         @media (max-width: 768px) {
@@ -183,6 +174,7 @@ $schedules = $db->query('
             resize: vertical;
         }
 
+        
         /* Tables */
         table {
             width: 100%;
@@ -198,9 +190,18 @@ $schedules = $db->query('
         th,
         td {
             border-bottom: 1px solid #eee;
+            text-align: center;
             padding: 12px 8px;
-            text-align: left;
             font-size: 0.9em;
+        }
+
+        .card1 {
+            margin-top: 4rem;
+            background: #fff;
+            border: 1px solid #e3e6f0;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
         /* Buttons & Badges */
@@ -269,94 +270,11 @@ $schedules = $db->query('
         </div>
         <div class="nav">
             <a href="#rooms">Status</a>
-            <a href="#schedules">Booking</a>
-            <a href="#profile">Profile</a>
+            <a href="booking.php">Booking</a>
+            <a href="account.php">Profile</a>
             <a href="logout.php" style="color:#ff6b6b">Logout</a>
         </div>
     </header>
-
-    <?php if ($message): ?><div class="alert"><?= htmlspecialchars($message) ?></div><?php endif; ?>
-
-    <div class="grid">
-        <div class="card" id="rooms">
-            <h2>Room Status</h2>
-            <p style="color:#666; font-size:0.9em; margin-bottom:15px;">Real-time availability for EFS 401 - EFS 410.</p>
-            <hr style="margin-bottom:15px; border:0; border-top:1px solid #eee;">
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Room</th>
-                        <th>Current Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($rooms as $r): ?>
-                        <tr>
-                            <td>
-                                <strong><?= htmlspecialchars($r['name']) ?></strong>
-                            </td>
-                            <td>
-                                <?php if (!empty($r['current_event'])): ?>
-                                    <span class="badge bg-danger">Occupied</span>
-                                    <div style="font-size:0.8em; margin-top:2px;">
-                                        <?= htmlspecialchars($r['current_event']) ?>
-                                    </div>
-                                <?php elseif ($r['status'] === 'fixed'): ?>
-                                    <span class="badge bg-warning">Classroom</span>
-                                <?php else: ?>
-                                    <span class="badge bg-success">Available</span>
-                                <?php endif; ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="card" id="schedules">
-            <h2>Create Schedule / Booking</h2>
-            <p style="color:#666; font-size:0.9em; margin-bottom:15px;">Book a room for an event or class.</p>
-            <hr style="margin-bottom:15px; border:0; border-top:1px solid #eee;">
-
-            <form method="post">
-                <input type="hidden" name="action" value="add_schedule">
-
-                <label>Select Room</label>
-                <select name="room_id" required>
-                    <option value="" disabled selected>-- Choose a Room --</option>
-                    <?php foreach ($rooms as $r): ?>
-                        <option value="<?= $r['id'] ?>"><?= htmlspecialchars($r['name']) ?></option>
-                    <?php endforeach; ?>
-                </select>
-
-                <label>Event / Class Title</label>
-                <input type="text" name="title" placeholder="e.g. Math 101 or Staff Meeting" required>
-
-                <div style="display:flex; gap:10px">
-                    <div style="flex:1">
-                        <label>Start Time</label>
-                        <input type="datetime-local" name="start_time" required>
-                    </div>
-                    <div style="flex:1">
-                        <label>End Time</label>
-                        <input type="datetime-local" name="end_time" required>
-                    </div>
-                </div>
-
-                <label>Booking Type</label>
-                <select name="type">
-                    <option value="booking">One-time Booking</option>
-                    <option value="fixed">Fixed Schedule (Recurring Class)</option>
-                </select>
-
-                <label>Additional Notes</label>
-                <textarea name="notes" placeholder="Any specific requirements..."></textarea>
-
-                <button type="submit" class="btn-primary" style="width:100%">Create Schedule</button>
-            </form>
-        </div>
-    </div>
 
     <div class="card" style="margin-top:20px;">
         <h3>Upcoming Events & Classes</h3>
@@ -399,13 +317,45 @@ $schedules = $db->query('
         </table>
     </div>
 
-    <div class="card" id="profile" style="margin-top:20px; border: 1px solid #f5c6cb;">
-        <h2 style="color: #721c24;">Danger Zone</h2>
-        <p>Logged in as: <strong><?= htmlspecialchars($username) ?></strong></p>
-        <form method="post" onsubmit="return confirm('Are you sure you want to delete your account permanently?');">
-            <input type="hidden" name="action" value="delete_account">
-            <button type="submit" class="btn-danger">Delete My Account</button>
-        </form>
+    <?php if ($message): ?><div class="alert"><?= htmlspecialchars($message) ?></div><?php endif; ?>
+        
+<!-- ROOM STATUS -->
+    <div class="grid">
+        <div class="card1" id="rooms">
+            <h2>Room Status</h2>
+            <p style="color:#666; font-size:0.9em; margin-bottom:15px;">Real-time availability for EFS 401 - EFS 410.</p>
+            <hr style="margin-bottom:15px; border:0; border-top:1px solid #eee;">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Room</th>
+                        <th>Current Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($rooms as $r): ?>
+                        <tr>
+                            <td>
+                                <strong><?= htmlspecialchars($r['name']) ?></strong>
+                            </td>
+                            <td>
+                                <?php if (!empty($r['current_event'])): ?>
+                                    <span class="badge bg-danger">Occupied</span>
+                                    <div style="font-size:0.8em; margin-top:2px;">
+                                        <?= htmlspecialchars($r['current_event']) ?>
+                                    </div>
+                                <?php elseif ($r['status'] === 'fixed'): ?>
+                                    <span class="badge bg-warning">Classroom</span>
+                                <?php else: ?>
+                                    <span class="badge bg-success">Available</span>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <div style="height:50px"></div>
