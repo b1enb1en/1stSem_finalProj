@@ -163,7 +163,7 @@ $schedules = $db->query('
         body {
             font-family: system-ui, sans-serif;
             padding: 20px;
-            max-width: 1200px;  
+            max-width: 1200px;
             margin: auto;
         }
 
@@ -233,7 +233,7 @@ $schedules = $db->query('
             resize: vertical;
         }
 
-        
+
         /* Tables */
         table {
             width: 100%;
@@ -405,46 +405,9 @@ $schedules = $db->query('
             <small>Logged in as: <strong><?= htmlspecialchars($username) ?></strong></small>
         </div>
         <div class="nav">
-<<<<<<< Updated upstream
-            <a href="#rooms">Status</a>
-            <a href="booking.php">Booking</a>
+            <a href="dashboard.php">All Rooms</a>
             <a href="account.php">Profile</a>
             <a href="logout.php" style="color:#ff6b6b">Logout</a>
-        </div>
-    </header>
-
-    <div class="card" style="margin-top:20px;">
-        <h3>Upcoming Events & Classes</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Room</th>
-                    <th>Title</th>
-                    <th>Time</th>
-                    <th>Type</th>
-                    <th>Notes</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($schedules as $s): ?>
-                    <tr>
-                        <td><strong><?= htmlspecialchars($s['room_name']) ?></strong></td>
-                        <td><?= htmlspecialchars($s['title']) ?></td>
-                        <td>
-                            <?= date('M d, h:i A', strtotime($s['start_time'])) ?> <br>
-                            <span style="color:#666; font-size:0.9em">to <?= date('h:i A', strtotime($s['end_time'])) ?></span>
-                        </td>
-                        <td>
-                            <span class="badge <?= $s['type'] === 'fixed' ? 'bg-warning' : 'bg-primary' ?>">
-                                <?= strtoupper($s['type']) ?>
-                            </span>
-                        </td>
-                        <td><small><?= htmlspecialchars($s['notes'] ?? '-') ?></small></td>
-                        <td>
-                            <form method="post" onsubmit="return confirm('Remove this schedule?');">
-=======
-            <a href="dashboard.php">All Rooms</a> <a href="logout.php" style="color:#ff6b6b">Logout</a>
         </div>
     </header>
 
@@ -503,7 +466,6 @@ $schedules = $db->query('
                             </button>
 
                             <form method="post" style="display:inline;" onsubmit="return confirm('Delete this schedule?');">
->>>>>>> Stashed changes
                                 <input type="hidden" name="action" value="delete_schedule">
                                 <input type="hidden" name="schedule_id" value="<?= $s['id'] ?>">
                                 <input type="hidden" name="redirect_room_id" value="<?= $selected_room['id'] ?>">
@@ -514,52 +476,51 @@ $schedules = $db->query('
                 <?php endforeach; ?>
             </div>
 
-<<<<<<< Updated upstream
-    <?php if ($message): ?><div class="alert"><?= htmlspecialchars($message) ?></div><?php endif; ?>
-        
-<!-- ROOM STATUS -->
-    <div class="grid">
-        <div class="card1" id="rooms">
-            <h2>Room Status</h2>
-            <p style="color:#666; font-size:0.9em; margin-bottom:15px;">Real-time availability for EFS 401 - EFS 410.</p>
-            <hr style="margin-bottom:15px; border:0; border-top:1px solid #eee;">
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Room</th>
-                        <th>Current Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($rooms as $r): ?>
-                        <tr>
-                            <td>
-                                <strong><?= htmlspecialchars($r['name']) ?></strong>
-                            </td>
-                            <td>
-                                <?php if (!empty($r['current_event'])): ?>
-                                    <span class="badge bg-danger">Occupied</span>
-                                    <div style="font-size:0.8em; margin-top:2px;">
-                                        <?= htmlspecialchars($r['current_event']) ?>
-                                    </div>
-                                <?php elseif ($r['status'] === 'fixed'): ?>
-                                    <span class="badge bg-warning">Classroom</span>
-                                <?php else: ?>
-                                    <span class="badge bg-success">Available</span>
-                                <?php endif; ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-=======
+            <?php if ($message): ?><div class="alert"><?= htmlspecialchars($message) ?>
+                </div><?php endif; ?>
+
+            <!-- ROOM STATUS -->
+            <div class="grid">
+                <div class="card1" id="rooms">
+                    <h2>Room Status</h2>
+                    <p style="color:#666; font-size:0.9em; margin-bottom:15px;">Real-time availability for EFS 401 - EFS 410.</p>
+                    <hr style="margin-bottom:15px; border:0; border-top:1px solid #eee;">
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Room</th>
+                                <th>Current Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($rooms as $r): ?>
+                                <tr>
+                                    <td>
+                                        <strong><?= htmlspecialchars($r['name']) ?></strong>
+                                    </td>
+                                    <td>
+                                        <?php if (!empty($r['current_event'])): ?>
+                                            <span class="badge bg-danger">Occupied</span>
+                                            <div style="font-size:0.8em; margin-top:2px;">
+                                                <?= htmlspecialchars($r['current_event']) ?>
+                                            </div>
+                                        <?php elseif ($r['status'] === 'fixed'): ?>
+                                            <span class="badge bg-warning">Classroom</span>
+                                        <?php else: ?>
+                                            <span class="badge bg-success">Available</span>
+                                        <?php endif; ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             <div class="card" style="height: fit-content; position:sticky; top:20px;">
                 <h3 id="form-title">Create Schedule</h3>
                 <p id="form-desc" style="font-size:0.8em; color:#666;">Add a new class or booking.</p>
->>>>>>> Stashed changes
 
                 <form method="post" id="schedule-form">
                     <input type="hidden" name="action" value="add_schedule" id="form-action">
