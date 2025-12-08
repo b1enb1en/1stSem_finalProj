@@ -11,30 +11,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if ($username === '' || $password === '') {
     $errors[] = 'All fields are required.';
   } else {
-    // Check if user exists
+    // 1. Fetch the user
     $stmt = $db->prepare('SELECT * FROM users WHERE username = :username LIMIT 1');
     $stmt->execute([':username' => $username]);
     $user = $stmt->fetch();
 
-    if (!$user) {
-      // Requirement: Account not existing -> Show error with Register button
-      $errors[] = 'Account not found. <a href="register.php" class="btn-link" style="text-decoration: none;" >Register here</a>';
+    // 2. Check: Does user exist? AND Is password correct?
+    // We combine them into one IF statement.
+    if ($user && password_verify($password, $user['password_hash'])) {
+      // SUCCESS: Log them in
+      $_SESSION['user_id'] = $user['id'];
+      $_SESSION['username'] = $user['username'];
+      header('Location: dashboard.php');
+      exit;
     } else {
-      // User exists, check password
-      if (password_verify($password, $user['password_hash'])) {
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['username'] = $user['username'];
-        header('Location: dashboard.php');
-        exit;
-      } else {
-        $errors[] = 'Incorrect password.';
-      }
+      // FAILED: Generic error message (More secure)
+      $errors[] = 'Incorrect username or password.';
     }
   }
 }
 ?>
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Login</title>
@@ -115,13 +114,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       left: 50%;
     }
 
-    input:focus ~ .bar::before {
+    input:focus~.bar::before {
       width: 100%;
       left: 0;
     }
 
-    input:focus ~ label,
-    input:valid ~ label {
+    input:focus~label,
+    input:valid~label {
       top: -1rem;
       font-size: 0.8rem;
       color: #2196F3;
@@ -137,14 +136,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       text-transform: uppercase;
       letter-spacing: 0.08em;
       cursor: pointer;
-      box-shadow: 0 3px 6px rgba(33,150,243,0.25);
+      box-shadow: 0 3px 6px rgba(33, 150, 243, 0.25);
       transition: 0.3s;
       font-size: 1rem;
       margin-top: 1rem;
     }
 
     .material-form button:hover {
-      box-shadow: 0 5px 10px rgba(33,150,243,0.35);
+      box-shadow: 0 5px 10px rgba(33, 150, 243, 0.35);
       transform: translateY(-2px);
     }
 
@@ -177,7 +176,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
   <form class="material-form" method="POST" action="">
-    
+
     <h2>Login</h2>
 
     <?php if ($errors): ?>
@@ -188,7 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="input-field">
       <input type="text" id="username" name="username" required
-             value="<?= htmlspecialchars($_POST['username'] ?? '') ?>">
+        value="<?= htmlspecialchars($_POST['username'] ?? '') ?>">
       <label for="username" style="cursor: text;">Username</label>
       <span class="bar"></span>
     </div>
@@ -208,4 +207,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </form>
 
 </body>
+
 </html>
