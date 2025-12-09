@@ -46,17 +46,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
 
-  <nav class="sidebar">
-    <div class="sidebar-header">
-      <div class="logo">Room Tracker</div>
-      <button class="toggle-btn">&times;</button>
-    </div>
-    <ul class="nav-links">
-      <li>
-        <a href="dashboard.php">
-          <i class="bi bi-speedometer2"></i> Dashboard
-        </a>
-      </li>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">Room Tracker</div>
+            <button class="toggle-btn">&times;</button>
+        </div>
+        <ul class="nav-links">
+            <li>
+            <a href="dashboard.php">
+                <i class="bi bi-house"></i> Dashboard
+            </a>
+            </li>
 
       <li>
         <a href="scheduler.php" class="active">

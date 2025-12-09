@@ -60,7 +60,7 @@ $rooms = $stmt->fetchAll();
         <ul class="nav-links">
             <li>
             <a href="dashboard.php" class="active">
-                <i class="bi bi-speedometer2"></i> Dashboard
+                <i class="bi bi-house"></i> Dashboard
             </a>
             </li>
 
