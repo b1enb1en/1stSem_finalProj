@@ -10,8 +10,9 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
-    display: flex;            /* Sidebar Layout */
-    overflow: auto;         /* Prevent double scrollbar */
+    display: flex; 
+    height: 100vh;           /* Sidebar Layout */
+    overflow: hidden;         /* Prevent the whole page to scroll */
 }
 
 /* -------------------------------------------------
@@ -55,20 +56,13 @@ body {
 }
 
 /* -------------------------------------------------
-   SIDEBAR
-   (moved to assets/css/sidebar.css)
-------------------------------------------------- */
-/* Sidebar, .sidebar-header, .logo, .nav-links, .nav-links li,
-   .nav-links a, .icon, .toggle-btn and related hover/active rules
-   have been extracted to sidebar.css */
-
-/* -------------------------------------------------
    MAIN CONTENT
 ------------------------------------------------- */
 .main-content {
     flex-grow: 1;
-    overflow: auto;
-    background: #6FFFE8;
+    overflow-y: auto;
+    height: 100vh;           /* Sidebar Layout */
+    background: #ffffff;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -17,8 +17,8 @@
     flex-shrink: 0;
     transition: all 0.3s ease;
     z-index: 1000;
-    display: flex;
     min-height: 100vh;
+    
 }
 
 .sidebar a i {
