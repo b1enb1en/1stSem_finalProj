@@ -8,10 +8,9 @@ $message = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $action = $_POST['action'] ?? '';
-  $message = " ";
 
-  // ADD A CLASS SCHEDULE
-  if ($_POST['action'] === 'add_fixed') {
+  // ADD A NEW SCHEDULE
+  if ($action === 'add_class') {
     $stmt = $db->prepare("INSERT INTO schedules (room_id, title, instructor, day_of_week, start_time, end_time, type, created_by) VALUES (:rid, :title, :instr, :day, :start, :end, 'fixed', :uid)");
     $stmt->execute([
       ':rid' => $_POST['room_id'],
@@ -26,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: manage_schedules.php");
     exit;
 
-    // UPDATE THE EXISTING CLASS SCHEDULE
+    // UPDATE EXISTING SCHEDULE
   } elseif ($action === 'update_class') {
     $stmt = $db->prepare("UPDATE schedules SET room_id=:rid, title=:title, instructor=:instr, day_of_week=:day, start_time=:start, end_time=:end WHERE id=:id");
     $stmt->execute([
@@ -38,14 +37,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       ':end' => $_POST['end_time'],
       ':id' => $_POST['schedule_id']
     ]);
-    $_SESSION['message'] = "Class Schedule updated successfully.";
+
+    $_SESSION['message'] = "Schedule updated successfully.";
     header("Location: manage_schedules.php");
     exit;
 
-    // DELETE A CLASS SCHEDULE
-  } elseif ($_POST['action'] === 'delete') {
-    $db->prepare("DELETE FROM schedules WHERE id = :id")->execute([':id' => $_POST['id']]);
-    $message = "Class removed.";
+    // DELETE A SCHEDULE
+  } elseif ($action === 'delete_schedule') {
+    $stmt = $db->prepare("DELETE FROM schedules WHERE id = :id");
+    $stmt->execute([':id' => $_POST['schedule_id']]);
+    $_SESSION['message'] = "Schedule deleted.";
+    header("Location: manage_schedules.php");
+    exit;
   }
 }
 $schedules = $db->query("SELECT s.*, r.name as room_name FROM schedules s JOIN rooms r ON s.room_id = r.id WHERE type='fixed' ORDER BY room_name, day_of_week")->fetchAll();
@@ -131,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="box">
       <h3>Add a Class Schedule</h3>
       <form method="post" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:15px;">
-        <input type="hidden" name="action" value="add_fixed">
+        <input type="hidden" name="action" value="add_class">
 
         <select name="room_id" required>
           <?php foreach ($rooms as $r): ?><option value="<?= $r['id'] ?>"><?= $r['name'] ?></option><?php endforeach; ?>

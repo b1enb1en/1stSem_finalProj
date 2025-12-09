@@ -61,17 +61,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <body>
 
-    <nav class="sidebar">
-        <div class="sidebar-header">
-            <div class="logo">Reserba Silid</div>
-            <button class="toggle-btn">&times;</button>
-        </div>
-        <ul class="nav-links">
-            <li>
-            <a href="dashboard.php">
-                <i class="bi bi-house"></i> Dashboard
-            </a>
-            </li>
+  <nav class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">Reserba Silid</div>
+      <button class="toggle-btn">&times;</button>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="dashboard.php">
+          <i class="bi bi-house"></i> Dashboard
+        </a>
+      </li>
 
       <li>
         <a href="scheduler.php" class="active">
@@ -131,14 +131,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     <?php if (isset($_GET['search_date'])): ?>
       <div class="box">
-        <h3>Results for <?= htmlspecialchars($_GET['search_date']) ?></h3>
+        <h3>Results for <?= htmlspecialchars($_GET['search_date'] ?? '') ?></h3>
         <?php if (empty($results)): ?>
           <p>No rooms available for this time slot.</p>
         <?php else: ?>
           <div class="grid">
             <?php foreach ($results as $r): ?>
               <div class="card" style="border-top: 4px solid #28a745;">
-                <strong><?= htmlspecialchars($r['name']) ?></strong>
+                <strong><?= htmlspecialchars($r['name'] ?? '') ?></strong>
                 <p style="font-size:0.8em; color:green;">Available</p>
                 <form method="post">
                   <input type="hidden" name="room_id" value="<?= $r['id'] ?>">

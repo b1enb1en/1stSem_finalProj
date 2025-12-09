@@ -68,7 +68,7 @@ body {
 .main-content {
     flex-grow: 1;
     overflow: auto;
-    background: #f8f9fa;
+    background: #6FFFE8;
     display: flex;
     flex-direction: column;
     align-items: center;
