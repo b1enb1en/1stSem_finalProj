@@ -121,4 +121,15 @@
     .sidebar.active {
         left: 0;
     }
+
+    .profile-container {
+        padding: 20px;
+        margin: 40px auto;
+        flex-grow: 1;
+        overflow: auto;
+        background: #f8f9fa;
+        align-items: center;
+        width: auto;
+        height: auto;
+    }
 }

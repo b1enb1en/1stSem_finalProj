@@ -67,6 +67,12 @@ $rooms = $db->query("SELECT * FROM rooms ORDER BY name")->fetchAll();
   <link rel="stylesheet" href="/assets/css/db_styles.css">
   <link rel="stylesheet" href="/assets/css/sidebar.css">
   <script src="/assets/css/script.js" defer></script>
+  <style>
+    .box {
+        margin: 20px 0;
+    } */
+  </style>
+
 </head>
 
 <script>
