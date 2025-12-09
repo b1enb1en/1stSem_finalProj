@@ -68,17 +68,17 @@ $rooms = $db->query("SELECT * FROM rooms ORDER BY name")->fetchAll();
 
 <body>
 
-    <nav class="sidebar">
-        <div class="sidebar-header">
-            <div class="logo">Reserba Silid</div>
-            <button class="toggle-btn">&times;</button>
-        </div>
-        <ul class="nav-links">
-            <li>
-            <a href="dashboard.php">
-                <i class="bi bi-house"></i> Dashboard
-            </a>
-            </li>
+  <nav class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">Reserba Silid</div>
+      <button class="toggle-btn">&times;</button>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="dashboard.php">
+          <i class="bi bi-house"></i> Dashboard
+        </a>
+      </li>
 
       <li>
         <a href="scheduler.php">
@@ -182,7 +182,7 @@ $rooms = $db->query("SELECT * FROM rooms ORDER BY name")->fetchAll();
       <span class="close-modal" onclick="closeEditModal()">&times;</span>
       <h3>Edit Schedule</h3>
       <form method="post" style="display:flex; flex-direction:column; gap:10px;">
-        <input type="hidden" name="action" value="update_fixed">
+        <input type="hidden" name="action" value="update_class">
         <input type="hidden" name="schedule_id" id="edit_id">
 
         <label>Room</label>
