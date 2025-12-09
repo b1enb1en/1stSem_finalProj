@@ -21,7 +21,7 @@ main {
 }
 
 .logo {
-    font-family: 'Cinzel Decorative', cursive;
+    font-family: 'Cinzel Decorative';
     font-size: 28px;
     background: linear-gradient(135deg, #6FFFE8 0%, #fff 50%, #6FFFE8 100%);
     background-clip: text;

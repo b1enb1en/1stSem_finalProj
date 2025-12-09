@@ -1,10 +1,16 @@
 /* -------------------------------------------------
    SIDEBAR (standalone)
 ------------------------------------------------- */
+
+/* :root {
+    --oxford-blue: #0B132A;
+    --fluorescent-cyan: #6FFFE8;
+} */
+
 .sidebar {
     width: 260px;
-    background: #1e293b;
-    color: white;
+    background: #0B132A;
+    color: #6FFFE8;
     display: flex;
     padding: 20px;
     flex-direction: column;
@@ -22,7 +28,7 @@
 
 .sidebar-header {
     padding: 20px;
-    border-bottom: 1px solid #334155;
+    border-bottom: 1px solid #6FFFE8;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -30,10 +36,14 @@
 }
 
 .logo {
-    font-size: 1.2rem;
-    font-weight: bold;
-    white-space: nowrap;
-    overflow: hidden;
+    font-family: 'Cinzel Decorative';
+    font-size: 28px;
+    background: linear-gradient(135deg, #6FFFE8 0%, #fff 50%, #6FFFE8 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 25px rgba(111, 255, 232, 0.4));
+    transition: all 0.3s ease;
 }
 
 /* -------------------------------------------------
@@ -49,6 +59,7 @@
     overflow-y: auto;
 }
 
+
 .nav-links li {
     width: 100%;
 }
@@ -57,17 +68,17 @@
     display: flex;
     align-items: center;
     padding: 12px 15px;
-    color: #cbd5e1;
+    color: #6FFFE8;
     text-decoration: none;
     border-radius: 8px;
     white-space: nowrap;
     transition: background 0.2s, color 0.2s;
 }
 
-.nav-links a:hover,
 .nav-links a.active {
-    background: #334155;
-    color: white;
+    background: #0B132A;
+    color: #fff;
+    font-weight: 1000;
 }
 
 .icon {
@@ -94,6 +105,7 @@
 .sidebar.active {
     left: 0;
     box-shadow: 5px 0 15px rgba(0,0,0,0.2);
+    background-color: #0B132A;
 }
 
 /* RESPONSIVE — Mobile */
