@@ -24,6 +24,7 @@ main {
     font-family: 'Cinzel Decorative', cursive;
     font-size: 28px;
     background: linear-gradient(135deg, #6FFFE8 0%, #fff 50%, #6FFFE8 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     filter: drop-shadow(0 0 25px rgba(111, 255, 232, 0.4));
