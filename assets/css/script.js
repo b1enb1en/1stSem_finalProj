@@ -21,10 +21,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Confirm Delete Logic
     const deleteForms = document.querySelectorAll('.confirm-delete');
-    deleteForms.forEach(form => {
+        deleteForms.forEach(form => {
         form.addEventListener('submit', function(e) {
-            if (!confirm("Are you sure you want to delete this?")) {
-                e.preventDefault();
+             if(!confirm("Are you sure you want to delete this?")) {
+                 e.preventDefault();
             }
         });
     });
@@ -48,12 +48,8 @@ const modal = document.getElementById('editModal');
     }
 
     function closeEditModal() {
-      modal.style.display = 'none';
-    }
-
-    // Close if clicking outside the white box
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        closeEditModal();
-      }
+      if (confirm("Are you sure you want to exit? Any unsaved changes will be lost.")) {
+        const modal = document.getElementById('editModal');
+        if (modal) modal.style.display = 'none';
+        }
     }
