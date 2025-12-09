@@ -26,7 +26,7 @@ if (isset($_GET['search_date'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $stmt = $db->prepare("INSERT INTO schedules (room_id, title, instructor, start_time, end_time, type, created_by) VALUES (?, ?, ?, ?, ?, 'booking', ?)");
-  $stmt->execute([$_POST['room_id'], $_POST['title'], $_POST['instructor'], $_SESSION['username'], $_POST['full_start'], $_POST['full_end'], $_SESSION['user_id']]);
+  $stmt->execute([$_POST['room_id'], $_POST['title'], $_POST['instructor'], $_POST['full_start'], $_POST['full_end'], $_SESSION['user_id']]);
   header("Location: scheduler.php?msg=booked");
   exit;
 }
@@ -46,38 +46,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
 
-    <nav class="sidebar">
-        <div class="sidebar-header">
-            <div class="logo">Room Tracker</div>
-            <button class="toggle-btn">&times;</button>
-        </div>
-        <ul class="nav-links">
-            <li>
-            <a href="dashboard.php">
-                <i class="bi bi-speedometer2"></i> Dashboard
-            </a>
-            </li>
+  <nav class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">Room Tracker</div>
+      <button class="toggle-btn">&times;</button>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="dashboard.php">
+          <i class="bi bi-speedometer2"></i> Dashboard
+        </a>
+      </li>
 
-            <li>
-            <a href="scheduler.php" class="active">
-                <i class="bi bi-calendar-week"></i> Scheduler
-            </a>
-            </li>
+      <li>
+        <a href="scheduler.php" class="active">
+          <i class="bi bi-calendar-week"></i> Scheduler
+        </a>
+      </li>
 
-            <li>
-            <a href="manage_schedules.php">
-                <i class="bi bi-pencil-square"></i> Edit Classes
-            </a>
-            </li>
+      <li>
+        <a href="manage_schedules.php">
+          <i class="bi bi-pencil-square"></i> Edit Classes
+        </a>
+      </li>
 
-            <li>
-            <a href="profile.php">
-                <i class="bi bi-person-circle"></i> Profile
-            </a>
-            </li>
+      <li>
+        <a href="profile.php">
+          <i class="bi bi-person-circle"></i> Profile
+        </a>
+      </li>
 
-        </ul>
-    </nav>
+    </ul>
+  </nav>
 
   <main class="main-content">
     <div class="mobile-header">
