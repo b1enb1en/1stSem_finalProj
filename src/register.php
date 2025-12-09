@@ -123,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     input:valid~label {
       top: -1rem;
       font-size: 0.8rem;
-      color: #2196F3;
+      color: #0B132A;
     }
 
     .material-form button {
