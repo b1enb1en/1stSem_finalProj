@@ -2,10 +2,8 @@
 session_start();
 require_once 'db_init.php';
 $db = getDB();
-
 if (empty($_SESSION['user_id'])) header('Location: login.php');
 
-$message = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $action = $_POST['action'];
   if ($action === 'logout') {
@@ -26,103 +24,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile</title>
-  <link rel="stylesheet" href="../assets/css/db_styles.css">
-  <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
-}
-
-body {
-  background: #f5f7fa;
-}
-
-.dashboard {
-  display: flex;
-  min-height: 100vh;
-}
-    .nav a {
-      color: #ccc;
-      margin-left: 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .nav a:hover,
-    .nav a.active {
-      color: #fff;
-      text-decoration: underline;
-    }
-
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
-
-    .btn {
-      display: block;
-      width: 100%;
-      padding: 15px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      color: white;
-      font-weight: bold;
-    }
-
-    .btn-logout {
-      background: #6c757d;
-    }
-
-    .btn-danger {
-      background: #dc3545;
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script src="/assets/css/script.js" defer></script>
 </head>
 
 <body>
-  <div class="dashboard">
-    <!-- SIDEBAR -->
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-header">
-        <span class="logo">Reserba Silid</span>
-      </div>
 
-      <nav class="nav-links">
-        <a href="dashboard.php"><i class="bi bi-house"></i><span>Dashboard</span></a>
-        <a href="scheduler.php"><i class="bi bi-door-open"></i><span>Schedules</span></a>
-        <a href="manage_schedules.php"><i class="bi bi-calendar-event"></i><span> Manager Schedule</span></a>
-        <a href="profile.php" class="active"><i class="bi bi-gear"></i><span>Settings</span></a>
-      </nav>
-    </aside>
-
-    <!-- CONTENT -->
-    <div class="content">
-
-      <div class="card">
-    <h2>Welcome, <?= htmlspecialchars($_SESSION['username']) ?></h2>
-    <p>Manage your account settings here.</p>
-    <hr>
-
-    <form method="post">
-      <input type="hidden" name="action" value="logout">
-      <button class="btn btn-logout">Logout</button>
-    </form>
-
-    <form method="post" onsubmit="return confirm('Are you sure? This cannot be undone.');">
-      <input type="hidden" name="action" value="delete_account">
-      <button class="btn btn-danger">Delete My Account</button>
-    </form>
-  </div>
-      </div>
+  <nav class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">Room Tracker</div>
+      <button class="toggle-btn">&times;</button>
     </div>
-  </body>
+    <ul class="nav-links">
+      <li><a href="dashboard.php"><span class="icon">📊</span> Dashboard</a></li>
+      <li><a href="scheduler.php"><span class="icon">📅</span> Scheduler</a></li>
+      <li><a href="manage_schedules.php"><span class="icon">✏️</span> Edit Classes</a></li>
+      <li><a href="profile.php" class="active"><span class="icon">👤</span> Profile</a></li>
+    </ul>
+  </nav>
 
-  </html>
+  <main class="main-content">
+    <div class="mobile-header">
+      <button class="toggle-btn" style="color:#333; font-size:1.5rem;">&#9776;</button>
+      <strong style="font-size:1.2rem;">Profile</strong>
+    </div>
+
+    <div class="box" style="max-width: 500px; margin: auto; text-align: center;">
+      <h2>Welcome, <?= htmlspecialchars($_SESSION['username']) ?></h2>
+      <p>Manage your account settings here.</p>
+      <hr style="margin: 20px 0; border:0; border-top:1px solid #eee;">
+
+      <form method="post" class="confirm-logout">
+        <input type="hidden" name="action" value="logout">
+        <button class="btn-logout" style="width:100%; margin-bottom:10px; padding:12px;">Logout</button>
+      </form>
+
+      <form method="post" class="confirm-delete">
+        <input type="hidden" name="action" value="delete_account">
+        <button class="btn-del" style="width:100%; padding:12px;">Delete My Account</button>
+      </form>
+    </div>
+  </main>
+</body>
+
+</html>

@@ -69,9 +69,13 @@ body {
   transition: 0.2s;
 }
 
+.nav-links a:active,
 .nav-links a:hover {
-  background: #334155;
+    color: #fff;
+    background: #334155;
 }
+
+
 
 .sidebar.collapsed a span {
   display: none;

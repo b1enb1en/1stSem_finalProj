@@ -1,0 +1,170 @@
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Key to Sidebar Layout */
+    height: 100vh;
+    overflow: hidden; /* Prevents double scrollbars */
+}
+
+/* SIDEBAR STYLES */
+.sidebar {
+    width: 260px;
+    background: #1e293b;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    height: 100vh;
+    z-index: 1000;
+}
+
+.sidebar-header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #334155;
+    min-height: 40px;
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* NAVIGATION LINKS */
+.nav-links {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow-y: auto;
+}
+
+.nav-links li { width: 100%; }
+
+.nav-links a {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: #cbd5e1;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+}
+
+.nav-links a:hover, 
+.nav-links a.active {
+    background: #334155;
+    color: white;
+}
+
+.icon {
+    min-width: 30px;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-right: 10px;
+}
+
+/* TOGGLE BUTTON (BURGER) */
+.toggle-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* MEDIA QUERY */
+
+/* DESKTOP DEFAULT: Button Hidden, Sidebar Wide */
+.toggle-btn { display: none; }
+
+/* MOBILE (Screens smaller than 768px) */
+@media (max-width: 768px) {
+    /* Show the button on mobile */
+    .toggle-btn { display: block; }
+    
+    /* Hide sidebar by default on mobile */
+    .sidebar {
+        position: absolute;
+        left: -260px; /* Hide off-screen */
+        width: 260px;
+    }
+
+    /* When class 'active' is added via JS, slide it in */
+    .sidebar.active {
+        left: 0; 
+        box-shadow: 5px 0 15px rgba(0,0,0,0.2);
+    }
+}
+
+/* MAIN CONTENT */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto; /* Internal scroll only */
+    height: 100vh;
+    background: #f8f9fa;
+    width: 100%;
+}
+
+/* Header inside Main Content (for Mobile Menu trigger backup) */
+.mobile-header {
+    display: none;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .mobile-header { display: flex; justify-content: space-between; align-items: center; }
+}
+
+/* CARD & UTILITIES */
+.card, .box {
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-block; padding: 4px 10px; border-radius: 12px;
+    font-size: 0.75em; font-weight: bold; text-transform: uppercase; color: white;
+}
+.available { background-color: #28a745; }
+.occupied { background-color: #dc3545; }
+
+/* Forms & Inputs */
+input, select, textarea {
+    width: 100%; padding: 10px; margin-bottom: 10px;
+    border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box;
+}
+button.btn-primary, button.btn-add {
+    padding: 10px 20px; background: #007bff; color: white;
+    border: none; border-radius: 4px; cursor: pointer; font-weight: bold;
+}
+button.btn-del { background: #dc3545; color: white; border:none; padding: 5px 10px; border-radius: 4px; cursor: pointer;}
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+th, td { padding: 12px; border-bottom: 1px solid #dee2e6; text-align: left; }
+th { background-color: #e9ecef; }
