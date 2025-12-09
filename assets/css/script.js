@@ -1,4 +1,21 @@
 document.addEventListener("DOMContentLoaded", function() {
+    // REFRESH THE PAGE EACH TIME A MINUTE HAS PASSED
+    console.log("Auto-refresh script loaded. Waiting for the next minute...");
+
+    setInterval(function() {
+        const now = new Date();
+        const seconds = now.getSeconds();
+
+        // Debugging: Watch the console (F12) to see it checking
+        // console.log("Current seconds: " + seconds);
+
+        // If the second hand hits "0", refresh immediately
+        if (seconds === 0) {
+            console.log("New minute detected! Refreshing...");
+            window.location.reload();
+        }
+    }, 1000);
+    
 
     // Sidebar Toggle Logic
     const toggleBtns = document.querySelectorAll('.toggle-btn');

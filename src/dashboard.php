@@ -94,7 +94,10 @@ $rooms = $stmt->fetchAll();
         <div class="box">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
                 <h2 style="margin:0;">Room Status</h2>
-                <small><?= $current_day ?>, <?= date('M d, Y') ?> | <?= date('h:i A') ?></small>
+                <small>
+                    <?= $current_day ?>, <?= date('M d, Y') ?> <br>
+                    Server Time: <strong style="color:red;"><?= date('h:i:s A') ?></strong>
+                </small>
             </div>
 
             <div class="grid">
