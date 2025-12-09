@@ -66,6 +66,20 @@ $rooms = $db->query("SELECT * FROM rooms ORDER BY name")->fetchAll();
   <script src="/assets/css/script.js" defer></script>
 </head>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const alertBox = document.getElementById("success-alert");
+    if (alertBox) {
+        alertBox.classList.add("show");
+
+        setTimeout(() => {
+            alertBox.classList.remove("show");
+        }, 3000);
+    }
+});
+</script>
+
+
 <body>
 
   <nav class="sidebar">
@@ -107,7 +121,12 @@ $rooms = $db->query("SELECT * FROM rooms ORDER BY name")->fetchAll();
       <strong style="font-size:1.2rem;">Edit Schedules</strong>
     </div>
 
-    <?php if ($message): ?><div class="alert"><?= $message ?></div><?php endif; ?>
+    <?php if (isset($_SESSION['message'])): ?>
+      <div id="success-alert" class="alert-box">
+        <?= $_SESSION['message']; ?>
+      </div>
+      <?php unset($_SESSION['message']); ?>
+    <?php endif; ?>
 
     <div class="box">
       <h3>Add a Class Schedule</h3>
@@ -132,7 +151,8 @@ $rooms = $db->query("SELECT * FROM rooms ORDER BY name")->fetchAll();
         <input type="time" name="end_time" required>
 
         <div style="grid-column: 1 / -1;">
-          <button type="submit" class="btn-add" style="width:100%;">Save Class</button>
+          <!-- <button type="submit" class="btn-add" style="width:100%;">Save Class</button> -->
+          <button class="btn-primary">Book Room</button>
         </div>
       </form>
     </div>

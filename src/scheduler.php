@@ -45,6 +45,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <script src="/assets/css/script.js" defer></script>
 </head>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const alertBox = document.getElementById("success-alert");
+    if (alertBox) {
+        alertBox.classList.add("show");
+
+        setTimeout(() => {
+            alertBox.classList.remove("show");
+        }, 3000);
+    }
+});
+</script>
+
+
 <body>
 
     <nav class="sidebar">
@@ -87,8 +101,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <?php if (isset($_GET['msg'])): ?>
-      <div class="alert">Booking Successful!</div>
+    <div id="success-alert" class="alert-box">
+      Room booked successfully!
+    </div>
     <?php endif; ?>
+
+
 
     <div class="box">
       <h3>Find Available Room (One-time Event)</h3>
@@ -128,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   <input type="hidden" name="full_end" value="<?= $_GET['search_date'] . ' ' . $_GET['end_time'] ?>">
                   <input type="text" name="title" placeholder="Event Title" required>
                   <input type="text" name="instructor" placeholder="Instructor / Booker Name" required>
-                  <button class="btn-primary" style="margin-top:10px; width:100%;">Book Now</button>
+                  <button class="btn-primary">Book Room</button>
                 </form>
               </div>
             <?php endforeach; ?>
