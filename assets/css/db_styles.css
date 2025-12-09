@@ -1,173 +1,217 @@
+/* -------------------------------------------------
+   GLOBAL / RESET
+------------------------------------------------- */
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: system-ui, -apple-system, sans-serif;
     background-color: #f8f9fa;
     color: #333;
     margin: 0;
     padding: 0;
-    display: flex; /* Key to Sidebar Layout */
-    height: 100vh;
-    overflow: hidden; /* Prevents double scrollbars */
+    display: flex;            /* Sidebar Layout */
+    overflow: auto;         /* Prevent double scrollbar */
 }
 
-/* SIDEBAR STYLES */
-.sidebar {
-    width: 260px;
-    background: #1e293b;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
-    height: 100vh;
-    z-index: 1000;
-}
-
-.sidebar-header {
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #334155;
-    min-height: 40px;
-}
-
-.logo {
-    font-size: 1.2rem;
-    font-weight: bold;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-/* NAVIGATION LINKS */
-.nav-links {
-    list-style: none;
-    padding: 10px;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    overflow-y: auto;
-}
-
-.nav-links li { width: 100%; }
-
-.nav-links a {
-    display: flex;
-    align-items: center;
-    padding: 12px 15px;
-    color: #cbd5e1;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: background 0.2s, color 0.2s;
-    white-space: nowrap;
-}
-
-.nav-links a:hover, 
-.nav-links a.active {
-    background: #334155;
-    color: white;
-}
-
-.icon {
-    min-width: 30px;
-    font-size: 1.2rem;
-    text-align: center;
-    margin-right: 10px;
-}
-
-/* TOGGLE BUTTON (BURGER) */
-.toggle-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0;
-}
-
-/* MEDIA QUERY */
-
-/* DESKTOP DEFAULT: Button Hidden, Sidebar Wide */
-.toggle-btn { display: none; }
-
-/* MOBILE (Screens smaller than 768px) */
-@media (max-width: 768px) {
-    /* Show the button on mobile */
-    .toggle-btn { display: block; }
-    
-    /* Hide sidebar by default on mobile */
-    .sidebar {
-        position: absolute;
-        left: -260px; /* Hide off-screen */
-        width: 260px;
-    }
-
-    /* When class 'active' is added via JS, slide it in */
-    .sidebar.active {
-        left: 0; 
-        box-shadow: 5px 0 15px rgba(0,0,0,0.2);
-    }
-}
-
-/* MAIN CONTENT */
-.main-content {
-    flex-grow: 1;
-    padding: 20px;
-    overflow-y: auto; /* Internal scroll only */
-    height: 100vh;
-    background: #f8f9fa;
-    width: 100%;
-}
-
-/* Header inside Main Content (for Mobile Menu trigger backup) */
-.mobile-header {
-    display: none;
-    margin-bottom: 20px;
-}
-
-@media (max-width: 768px) {
-    .mobile-header { display: flex; justify-content: space-between; align-items: center; }
-}
-
-/* CARD & UTILITIES */
-.card, .box {
-    background: white;
+/* -------------------------------------------------
+   CARD & BOX COMPONENTS
+------------------------------------------------- */
+.card,
+.box {
+    background: #fff;
     border: 1px solid #dee2e6;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    margin-bottom: 20px;
 }
 
+.card:hover {
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+.box {
+    border: 1px solid #e3e6f0;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    width: 100%;    
+    border: 1px solid #000000;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 400px;
+}
+
+/* -------------------------------------------------
+   GRID LAYOUTS
+------------------------------------------------- */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill,minmax(250px, 1fr));
     gap: 20px;
+    padding: 10px;
 }
 
-/* Status Badges */
-.status-badge {
-    display: inline-block; padding: 4px 10px; border-radius: 12px;
-    font-size: 0.75em; font-weight: bold; text-transform: uppercase; color: white;
+/* -------------------------------------------------
+   SIDEBAR
+   (moved to assets/css/sidebar.css)
+------------------------------------------------- */
+/* Sidebar, .sidebar-header, .logo, .nav-links, .nav-links li,
+   .nav-links a, .icon, .toggle-btn and related hover/active rules
+   have been extracted to sidebar.css */
+
+/* -------------------------------------------------
+   MAIN CONTENT
+------------------------------------------------- */
+.main-content {
+    flex-grow: 1;
+    overflow: auto;
+    background: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
 }
+
+.mobile-header {
+    display: none; /* hidden by default on desktop */
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* PROFILE BOX */
+
+.profile-box {
+    border: 1px solid #000000;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    background:#f56363;
+    max-width: 600px; 
+    margin: 10rem; 
+    text-align: center;
+    min-width: 300px;
+}
+
+
+
+/* -------------------------------------------------
+   STATUS BADGES
+------------------------------------------------- */
+.status-badge,
+.available,
+.occupied {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75em;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+}
+
 .available { background-color: #28a745; }
 .occupied { background-color: #dc3545; }
 
-/* Forms & Inputs */
-input, select, textarea {
-    width: 100%; padding: 10px; margin-bottom: 10px;
-    border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box;
+/* -------------------------------------------------
+   FORMS & INPUTS
+------------------------------------------------- */
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
 }
-button.btn-primary, button.btn-add {
-    padding: 10px 20px; background: #007bff; color: white;
-    border: none; border-radius: 4px; cursor: pointer; font-weight: bold;
-}
-button.btn-del { background: #dc3545; color: white; border:none; padding: 5px 10px; border-radius: 4px; cursor: pointer;}
 
-/* Tables */
-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-th, td { padding: 12px; border-bottom: 1px solid #dee2e6; text-align: left; }
-th { background-color: #e9ecef; }
+button.btn-primary,
+button.btn-add {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button.btn-del {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* -------------------------------------------------
+   TABLES
+------------------------------------------------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+th {
+    background-color: #e9ecef;
+}
+
+/* RESPONSIVE — Mobile */
+/* Note: sidebar / toggle responsive rules moved to sidebar.css.
+   Keep other responsive rules here if any. */
+@media (max-width: 882px) {
+    /* ...any remaining mobile-only rules unrelated to sidebar... */
+
+    /* show mobile header */
+    .mobile-header {
+        display: flex;
+        position: sticky;
+        top: 0;
+        z-index: 900;
+        padding: 10px 16px;
+        background: #f8f9fa;
+        border-bottom: 1px solid #e9ecef;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* ensure toggle button becomes visible on mobile (appearance still controlled in sidebar.css) */
+    .toggle-btn {
+        display: block;
+    }
+    .card, .box {  
+    margin-top: 20px;
+    }
+
+    .profile-box {
+        background-color: #007bff;
+    }
+}
+
+@media (min-width: 882px) {
+    .main-content {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .box {
+        margin-bottom: 20px;
+    }
+}
 
 /* STYLES FOR MODAL */
 .modal {

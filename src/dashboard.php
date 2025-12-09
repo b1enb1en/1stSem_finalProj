@@ -44,11 +44,12 @@ $rooms = $stmt->fetchAll();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="/assets/css/db_styles.css">
+    <link rel="stylesheet" href="/assets/css/sidebar.css">
     <script src="/assets/css/script.js" defer></script>
 </head>
 
 <body>
-
+    
     <nav class="sidebar">
         <div class="sidebar-header">
             <div class="logo">Room Tracker</div>
@@ -67,12 +68,11 @@ $rooms = $stmt->fetchAll();
             <button class="toggle-btn" style="color:#333; font-size:1.5rem;">&#9776;</button>
             <strong style="font-size:1.2rem;">Dashboard</strong>
         </div>
-
         <div class="box">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-                <h2 style="margin:0;">Room Status</h2>
-                <small><?= $current_day ?>, <?= date('M d, Y') ?> | <?= date('h:i A') ?></small>
-            </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                    <h2 style="margin:0;">Room Status</h2>
+                    <small><?= $current_day ?>, <?= date('M d, Y') ?> | <?= date('h:i A') ?></small>
+                </div>
 
             <div class="grid">
                 <?php foreach ($rooms as $r): ?>

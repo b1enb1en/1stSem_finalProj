@@ -39,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Scheduler</title>
   <link rel="stylesheet" href="/assets/css/db_styles.css">
+  <link rel="stylesheet" href="/assets/css/sidebar.css">
   <script src="/assets/css/script.js" defer></script>
 </head>
 

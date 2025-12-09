@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile</title>
   <link rel="stylesheet" href="/assets/css/db_styles.css">
+  <link rel="stylesheet" href="/assets/css/sidebar.css">
   <script src="/assets/css/script.js" defer></script>
 </head>
 
@@ -51,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <strong style="font-size:1.2rem;">Profile</strong>
     </div>
 
-    <div class="box" style="max-width: 500px; margin: auto; text-align: center;">
+    <div class="profile-box">
       <h2>Welcome, <?= htmlspecialchars($_SESSION['username']) ?></h2>
       <p>Manage your account settings here.</p>
       <hr style="margin: 20px 0; border:0; border-top:1px solid #eee;">
