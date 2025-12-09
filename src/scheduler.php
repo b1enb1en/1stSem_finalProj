@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <ul class="nav-links">
             <li>
             <a href="dashboard.php">
-                <i class="bi bi-speedometer2"></i> Dashboard
+                <i class="bi bi-house"></i> Dashboard
             </a>
             </li>
 
