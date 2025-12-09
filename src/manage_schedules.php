@@ -59,6 +59,7 @@ $rooms = $db->query("SELECT * FROM rooms ORDER BY name")->fetchAll();
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Edit Classes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <link rel="stylesheet" href="/assets/css/db_styles.css">
   <link rel="stylesheet" href="/assets/css/sidebar.css">
@@ -67,17 +68,17 @@ $rooms = $db->query("SELECT * FROM rooms ORDER BY name")->fetchAll();
 
 <body>
 
-  <nav class="sidebar">
-    <div class="sidebar-header">
-      <div class="logo">Room Tracker</div>
-      <button class="toggle-btn">&times;</button>
-    </div>
-    <ul class="nav-links">
-      <li>
-        <a href="dashboard.php">
-          <i class="bi bi-house"></i> Dashboard
-        </a>
-      </li>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">Reserba Silid</div>
+            <button class="toggle-btn">&times;</button>
+        </div>
+        <ul class="nav-links">
+            <li>
+            <a href="dashboard.php">
+                <i class="bi bi-house"></i> Dashboard
+            </a>
+            </li>
 
       <li>
         <a href="scheduler.php">
