@@ -26,7 +26,7 @@ if (isset($_GET['search_date'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $stmt = $db->prepare("INSERT INTO schedules (room_id, title, instructor, start_time, end_time, type, created_by) VALUES (?, ?, ?, ?, ?, 'booking', ?)");
-  $stmt->execute([$_POST['room_id'], $_POST['title'], $_SESSION['username'], $_POST['full_start'], $_POST['full_end'], $_SESSION['user_id']]);
+  $stmt->execute([$_POST['room_id'], $_POST['title'], $_POST['instructor'], $_SESSION['username'], $_POST['full_start'], $_POST['full_end'], $_SESSION['user_id']]);
   header("Location: scheduler.php?msg=booked");
   exit;
 }
@@ -104,6 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   <input type="hidden" name="full_start" value="<?= $_GET['search_date'] . ' ' . $_GET['start_time'] ?>">
                   <input type="hidden" name="full_end" value="<?= $_GET['search_date'] . ' ' . $_GET['end_time'] ?>">
                   <input type="text" name="title" placeholder="Event Title" required>
+                  <input type="text" name="instructor" placeholder="Instructor / Booker Name" required>
                   <button class="btn-primary" style="margin-top:10px; width:100%;">Book Now</button>
                 </form>
               </div>

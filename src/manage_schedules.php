@@ -5,7 +5,11 @@ $db = getDB();
 if (empty($_SESSION['user_id'])) header('Location: login.php');
 
 $message = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $action = $_POST['action'] ?? '';
+
+  // ADD A CLASS SCHEDULE
   if ($_POST['action'] === 'add_fixed') {
     $stmt = $db->prepare("INSERT INTO schedules (room_id, title, instructor, day_of_week, start_time, end_time, type, created_by) VALUES (:rid, :title, :instr, :day, :start, :end, 'fixed', :uid)");
     $stmt->execute([
@@ -18,6 +22,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       ':uid' => $_SESSION['user_id']
     ]);
     $message = "Class added successfully.";
+
+    // UPDATE THE EXISTING CLASS SCHEDULE
+  } elseif ($action === 'update_class') {
+    $stmt = $db->prepare("UPDATE schedules SET room_id=:rid, title=:title, instructor=:instr, day_of_week=:day, start_time=:start, end_time=:end WHERE id=:id");
+    $stmt->execute([
+      ':rid' => $_POST['room_id'],
+      ':title' => $_POST['title'],
+      ':instr' => $_POST['instructor'],
+      ':day' => $_POST['day_of_week'],
+      ':start' => $_POST['start_time'],
+      ':end' => $_POST['end_time'],
+      ':id' => $_POST['schedule_id']
+    ]);
+    $message = "Class updated successfully.";
+
+    // DELETE A CLASS SCHEDULE
   } elseif ($_POST['action'] === 'delete') {
     $db->prepare("DELETE FROM schedules WHERE id = :id")->execute([':id' => $_POST['id']]);
     $message = "Class removed.";
@@ -62,7 +82,7 @@ $rooms = $db->query("SELECT * FROM rooms ORDER BY name")->fetchAll();
     <?php if ($message): ?><div class="alert"><?= $message ?></div><?php endif; ?>
 
     <div class="box">
-      <h3>Add Semester Class (Fixed)</h3>
+      <h3>Add a Class Schedule</h3>
       <form method="post" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:15px;">
         <input type="hidden" name="action" value="add_fixed">
 
@@ -90,7 +110,7 @@ $rooms = $db->query("SELECT * FROM rooms ORDER BY name")->fetchAll();
     </div>
 
     <div class="box">
-      <h3>Current Fixed Schedules</h3>
+      <h3>Current Schedules</h3>
       <div style="overflow-x:auto;">
         <table>
           <thead>
@@ -111,7 +131,10 @@ $rooms = $db->query("SELECT * FROM rooms ORDER BY name")->fetchAll();
                 <td><?= date('h:i A', strtotime($s['start_time'])) ?> - <?= date('h:i A', strtotime($s['end_time'])) ?></td>
                 <td><?= htmlspecialchars($s['title']) ?></td>
                 <td><?= htmlspecialchars($s['instructor']) ?></td>
-                <td>
+                <td style="display:flex; gap:5px;">
+                  <button type="button" class="btn-primary" style="padding:5px 10px; font-size:0.8em;"
+                    onclick="openEditModal(<?= htmlspecialchars(json_encode($s), ENT_QUOTES, 'UTF-8') ?>)">Edit</button>
+
                   <form method="post" class="confirm-delete">
                     <input type="hidden" name="action" value="delete">
                     <input type="hidden" name="id" value="<?= $s['id'] ?>">
@@ -125,6 +148,44 @@ $rooms = $db->query("SELECT * FROM rooms ORDER BY name")->fetchAll();
       </div>
     </div>
   </main>
-</body>
+
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeEditModal()">&times;</span>
+      <h3>Edit Schedule</h3>
+      <form method="post" style="display:flex; flex-direction:column; gap:10px;">
+        <input type="hidden" name="action" value="update_fixed">
+        <input type="hidden" name="schedule_id" id="edit_id">
+
+        <label>Room</label>
+        <select name="room_id" id="edit_room_id" required>
+          <?php foreach ($rooms as $r): ?><option value="<?= $r['id'] ?>"><?= $r['name'] ?></option><?php endforeach; ?>
+        </select>
+
+        <label>Title</label>
+        <input type="text" name="title" id="edit_title" required>
+
+        <label>Instructor</label>
+        <input type="text" name="instructor" id="edit_instructor" required>
+
+        <label>Day</label>
+        <select name="day_of_week" id="edit_day" required>
+          <option value="Monday">Monday</option>
+          <option value="Tuesday">Tuesday</option>
+          <option value="Wednesday">Wednesday</option>
+          <option value="Thursday">Thursday</option>
+          <option value="Friday">Friday</option>
+          <option value="Saturday">Saturday</option>
+        </select>
+
+        <div style="display:flex; gap:10px;">
+          <div style="flex:1"><label>Start</label><input type="time" name="start_time" id="edit_start" required></div>
+          <div style="flex:1"><label>End</label><input type="time" name="end_time" id="edit_end" required></div>
+        </div>
+
+        <button type="submit" class="btn-primary" style="margin-top:10px;">Update Class</button>
+      </form>
+    </div>
+  </div>
 
 </html>

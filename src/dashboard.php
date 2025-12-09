@@ -20,7 +20,7 @@ $sql = "SELECT r.*,
      AND (
         (type = 'fixed' AND day_of_week = :day AND :time >= start_time AND :time < end_time)
         OR
-        (type = 'booking' AND :date = date(start_time) AND :time >= time(start_time) AND :time < time(end_time))
+        (type = 'booking' AND :date = date(start_time) AND :time >= strftime('%H:%M', start_time) AND :time < strftime('%H:%M', end_time))
      ) LIMIT 1) as event_title,
     (SELECT instructor FROM schedules s 
      WHERE s.room_id = r.id 

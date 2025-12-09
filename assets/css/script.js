@@ -1,5 +1,33 @@
 document.addEventListener("DOMContentLoaded", function() {
     
+    // MODAL (CURRENT CLASS SCHED EDITOR)
+const modal = document.getElementById('editModal');
+
+    function openEditModal(data) {
+      // Fill the form with data from the clicked row
+      document.getElementById('edit_id').value = data.id;
+      document.getElementById('edit_room_id').value = data.room_id;
+      document.getElementById('edit_title').value = data.title;
+      document.getElementById('edit_instructor').value = data.instructor;
+      document.getElementById('edit_day').value = data.day_of_week;
+      document.getElementById('edit_start').value = data.start_time;
+      document.getElementById('edit_end').value = data.end_time;
+      
+      // Show the modal
+      modal.style.display = 'flex';
+    }
+
+    function closeEditModal() {
+      modal.style.display = 'none';
+    }
+
+    // Close if clicking outside the white box
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        closeEditModal();
+      }
+    }
+
     // Sidebar Toggle Logic
     const toggleBtns = document.querySelectorAll('.toggle-btn');
     const sidebar = document.querySelector('.sidebar');
