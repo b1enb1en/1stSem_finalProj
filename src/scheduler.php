@@ -38,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Scheduler</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <link rel="stylesheet" href="/assets/css/db_styles.css">
   <link rel="stylesheet" href="/assets/css/sidebar.css">
   <script src="/assets/css/script.js" defer></script>
@@ -45,18 +46,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
 
-  <nav class="sidebar">
-    <div class="sidebar-header">
-      <div class="logo">Room Tracker</div>
-      <button class="toggle-btn">&times;</button>
-    </div>
-    <ul class="nav-links">
-      <li><a href="dashboard.php"><span class="icon">📊</span> Dashboard</a></li>
-      <li><a href="scheduler.php" class="active"><span class="icon">📅</span> Scheduler</a></li>
-      <li><a href="manage_schedules.php"><span class="icon">✏️</span> Edit Classes</a></li>
-      <li><a href="profile.php"><span class="icon">👤</span> Profile</a></li>
-    </ul>
-  </nav>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">Room Tracker</div>
+            <button class="toggle-btn">&times;</button>
+        </div>
+        <ul class="nav-links">
+            <li>
+            <a href="dashboard.php">
+                <i class="bi bi-speedometer2"></i> Dashboard
+            </a>
+            </li>
+
+            <li>
+            <a href="scheduler.php" class="active">
+                <i class="bi bi-calendar-week"></i> Scheduler
+            </a>
+            </li>
+
+            <li>
+            <a href="manage_schedules.php">
+                <i class="bi bi-pencil-square"></i> Edit Classes
+            </a>
+            </li>
+
+            <li>
+            <a href="profile.php">
+                <i class="bi bi-person-circle"></i> Profile
+            </a>
+            </li>
+
+        </ul>
+    </nav>
 
   <main class="main-content">
     <div class="mobile-header">
