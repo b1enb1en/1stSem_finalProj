@@ -8,6 +8,7 @@ $message = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $action = $_POST['action'] ?? '';
+  $message = " ";
 
   // ADD A CLASS SCHEDULE
   if ($_POST['action'] === 'add_fixed') {
@@ -21,7 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       ':end' => $_POST['end_time'],
       ':uid' => $_SESSION['user_id']
     ]);
-    $message = "Class added successfully.";
+    $_SESSION['message'] = "Class added successfully.";
+    header("Location: manage_schedules.php");
+    exit;
 
     // UPDATE THE EXISTING CLASS SCHEDULE
   } elseif ($action === 'update_class') {
@@ -35,7 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       ':end' => $_POST['end_time'],
       ':id' => $_POST['schedule_id']
     ]);
-    $message = "Class updated successfully.";
+    $_SESSION['message'] = "Class Schedule updated successfully.";
+    header("Location: manage_schedules.php");
+    exit;
 
     // DELETE A CLASS SCHEDULE
   } elseif ($_POST['action'] === 'delete') {
@@ -62,38 +67,38 @@ $rooms = $db->query("SELECT * FROM rooms ORDER BY name")->fetchAll();
 
 <body>
 
-    <nav class="sidebar">
-        <div class="sidebar-header">
-            <div class="logo">Room Tracker</div>
-            <button class="toggle-btn">&times;</button>
-        </div>
-        <ul class="nav-links">
-            <li>
-            <a href="dashboard.php">
-                <i class="bi bi-house"></i> Dashboard
-            </a>
-            </li>
+  <nav class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">Room Tracker</div>
+      <button class="toggle-btn">&times;</button>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="dashboard.php">
+          <i class="bi bi-house"></i> Dashboard
+        </a>
+      </li>
 
-            <li>
-            <a href="scheduler.php">
-                <i class="bi bi-calendar-week"></i> Scheduler
-            </a>
-            </li>
+      <li>
+        <a href="scheduler.php">
+          <i class="bi bi-calendar-week"></i> Scheduler
+        </a>
+      </li>
 
-            <li>
-            <a href="manage_schedules.php" class="active">
-                <i class="bi bi-pencil-square" ></i> Edit Classes
-            </a>
-            </li>
+      <li>
+        <a href="manage_schedules.php" class="active">
+          <i class="bi bi-pencil-square"></i> Edit Classes
+        </a>
+      </li>
 
-            <li>
-            <a href="profile.php">
-                <i class="bi bi-person-circle"></i> Profile
-            </a>
-            </li>
+      <li>
+        <a href="profile.php">
+          <i class="bi bi-person-circle"></i> Profile
+        </a>
+      </li>
 
-        </ul>
-    </nav>
+    </ul>
+  </nav>
 
   <main class="main-content">
     <div class="mobile-header">
