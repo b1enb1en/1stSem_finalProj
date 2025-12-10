@@ -68,14 +68,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     .settings-list {
-<<<<<<< HEAD
-      list-style: none;
-=======
         list-style: none;
         margin-top: 10px;
         font-size: 16px;
         color: #1e293b;
->>>>>>> 25694f6cc528d40a041b603b6ea7dfc0c723b5e5
     }
 
     .settings-list li {
@@ -165,23 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         transition: transform 0.2s ease, box-shadow 0.3s ease;
         width: auto;    
     }
-
-    @media (max-width: 882px) {
-        .profile-container {
-            padding: 20px;
-            margin: 40px auto;
-            width: auto;
-            height: auto;
-            border: 1px solid #e3e6f0;
-            border-radius: 12px;
-            background: #ffffff;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            min-width: 400px;
-        }
-    }
+  }
 </style>
 
 <body>
