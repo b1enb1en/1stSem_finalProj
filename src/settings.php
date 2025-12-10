@@ -69,7 +69,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     .settings-list {
       list-style: none;
-      margin-top: 10px;
     }
 
     .settings-list li {
@@ -140,26 +139,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     .profile-main-content {
       flex-grow: 1;
       overflow: auto;
-      padding: 20px; 
+      padding: 30px; 
       background: #0B132A;
     }
+
 
     /* RESPONSIVE — Mobile */
     @media (max-width: 882px) {
 
     .profile-container {
-        padding: 20px;
         margin: 40px auto;
-        width: auto;
         height: auto;
-        border: 1px solid #e3e6f0;
-        border-radius: 12px;
-        background: #ffffff;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
         display: flex;
         flex-direction: column;
         gap: 4px;
         min-width: 400px;
+        border: 1px solid rgba(111,255,232,0.15);
+        backdrop-filter: blur(6px);
+        border-radius: 14px;
+        padding: 24px;
+        box-shadow: 0 0 20px rgba(111,255,232,0.12);
+        transition: transform 0.2s ease, box-shadow 0.3s ease;
+        width: auto;    
     }
 }
   </style>
@@ -198,35 +199,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         </ul>
     </nav>
-  <main class="profile-main-content">
-    <div class="mobile-header">
-      <button class="toggle-btn" style="font-size:1.5rem;">&#9776;</button>
-      <strong style="font-size:1.2rem;">Profile</strong>
-    </div>
+<main class="profile-main-content">
 
-    <div class="profile-container">
-    <div class="header">
-      <div class="info">
-      <h2>Hello, <?= htmlspecialchars($_SESSION['username']) ?></h2>
-      <p>Manage your account settings here.</p>
-      </div>
-    </div>
-
-    <h3 class="section-title">Account Controls</h3>
-    <div class="settings-list">
-      <!-- <li><span>Change password</span> ➜</li>
-      <li><span>Privacy Settings</span> ➜</li> -->
-      <form method="post" class="confirm-delete">
-        <input type="hidden" name="action" value="delete_account">
-        <button class="btn-delete">Delete My Account</button>
-      </form>
+  <!-- Mobile Header -->
+  <div class="mobile-header">
+    <button class="toggle-btn" style="font-size:1.5rem;">&#9776;</button>
+    <strong style="font-size:1.2rem;">Profile</strong>
   </div>
 
+  <!-- Glass Container -->
+  <div class="box profile-container">
 
+      <div class="header">
+        <div class="info">
+          <h2 style="color: white">Hello, <?= htmlspecialchars($_SESSION['username']) ?></h2>
+          <p>Manage your account settings here.</p>
+        </div>
+      </div>
+
+      <!-- Section Title -->
+      <h3 class="section-title" style="color: white">Account Controls</h3>
+
+      <!-- Settings List -->
+      <ul class="settings-list">
+        <li class="btn-delete" onclick="document.querySelector('.confirm-delete').submit();">
+          Delete My Account
+        </li>
+      </ul>
+
+      <!-- Delete Form (hidden button) -->
+      <form method="post" class="confirm-delete" style="display:none;">
+        <input type="hidden" name="action" value="delete_account">
+      </form>
+
+      <!-- Logout -->
       <form method="post" class="confirm-logout">
         <input type="hidden" name="action" value="logout">
         <button class="btn-logout">Log Out</button>
       </form>
+
   </div>
 </main>
   <script src="../assets/js/script.js"></script>

@@ -148,6 +148,7 @@ textarea {
     border-radius: 4px;
 } */
 
+
 /* -------------------------------------------------
    MODERN GLASS INPUTS
 ------------------------------------------------- */
@@ -173,6 +174,13 @@ textarea {
     /* Smooth transition */
     transition: all 0.25s ease;
 }
+
+/* Dropdown Menu Colors (Firefox) */
+select option {
+    background: #0B132A;
+    color: #e9fefb;
+}
+
 
 input::placeholder,
 textarea::placeholder {
