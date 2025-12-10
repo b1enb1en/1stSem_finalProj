@@ -43,6 +43,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <link rel="stylesheet" href="/assets/css/db_styles.css">
   <link rel="stylesheet" href="/assets/css/sidebar.css">
   <script src="/assets/css/script.js" defer></script>
+
+  <style>
+    .box {
+        margin: 20px 0;
+    } */
+  </style>
+
 </head>
 
 <script>

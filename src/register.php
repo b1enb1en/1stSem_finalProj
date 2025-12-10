@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       width: 0;
       bottom: 0;
       position: absolute;
-      background: #2196F3;
+      background: #0B132A;
       transition: 0.2s;
       left: 50%;
     }
@@ -123,13 +123,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     input:valid~label {
       top: -1rem;
       font-size: 0.8rem;
-      color: #2196F3;
+      color: #0B132A;
     }
 
     .material-form button {
       width: 100%;
       padding: 0.9rem;
-      background: #2196F3;
+      background: #0B132A;
       color: white;
       border: none;
       border-radius: 6px;

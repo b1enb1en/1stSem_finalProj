@@ -41,21 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         display: flex;            /* Sidebar Layout */
     }
 
-    .profile-container {
-      width: 900px;
-      background: #ffffff;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    }
-
-    .profile-container {
-        padding: 20px;
-        flex-grow: 1;
-        overflow: auto;
-        background: #f8f9fa;
-        align-items: center;
-    }
-
     .grid {
         display: grid;
         grid-template-columns: repeat(auto-fill,minmax(250px, 1fr));
@@ -157,8 +142,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       margin-left: auto; 
       color: #1e293b;
     }
+
+    .profile-main-content {
+      flex-grow: 1;
+      overflow: auto;
+      padding: 20px; 
+      background: #ffffff;
+    }
+
   </style>
 <body>
+  
 
     <nav class="sidebar">
         <div class="sidebar-header">
@@ -192,6 +186,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         </ul>
     </nav>
+  <main class="profile-main-content">
+    <div class="mobile-header">
+      <button class="toggle-btn" style="color:#333; font-size:1.5rem;">&#9776;</button>
+      <strong style="font-size:1.2rem;">Profile</strong>
+    </div>
 
     <div class="profile-container">
     <div class="header">
@@ -217,30 +216,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button class="btn-logout">Log Out</button>
       </form>
   </div>
+</main>
 </body>
 
 </html>
-
-
-  <!-- <main class="main-content">
-    <div class="mobile-header">
-      <button class="toggle-btn" style="color:#333; font-size:1.5rem;">&#9776;</button>
-      <strong style="font-size:1.2rem;">Profile</strong>
-    </div>
-
-    <div class="profile-box">
-      <h2>Welcome, <?= htmlspecialchars($_SESSION['username']) ?></h2>
-      <p>Manage your account settings here.</p>
-      <hr style="margin: 20px 0; border:0; border-top:1px solid #eee;">
-
-      <form method="post" class="confirm-logout">
-        <input type="hidden" name="action" value="logout">
-        <button class="btn-logout" style="width:100%; margin-bottom:10px; padding:12px;">Logout</button>
-      </form>
-
-      <form method="post" class="confirm-delete">
-        <input type="hidden" name="action" value="delete_account">
-        <button class="btn-del" style="width:100%; padding:12px;">Delete My Account</button>
-      </form>
-    </div>
-  </main> -->
