@@ -43,7 +43,7 @@
 
     <footer class="footer py-4">
         <div class="container">
-            <p class="text-center mb-0 small footer-text">© 2025 ReserBa Silid. All rights reserved.</p>
+            <p class="text-center mb-0 small footer-text">© 2025 Reserba Silid. All rights reserved.</p>
         </div>
     </footer>
 </body>

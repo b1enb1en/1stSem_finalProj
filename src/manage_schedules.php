@@ -76,7 +76,8 @@ $rooms = $db->query("SELECT * FROM rooms ORDER BY name")->fetchAll();
   </style>
 
 </head>
-
+<!-- JAVASCRIPT -->
+ <!-- A SUCESSFUL POP UP WILL APPEAR -->
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const alertBox = document.getElementById("success-alert");

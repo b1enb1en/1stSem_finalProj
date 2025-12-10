@@ -48,6 +48,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       box-sizing: border-box;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
+
+    @media (max-width: 882px) {
+      /* .login-card {
+        width: 90%;
+      } */
+    }
   </style>
 </head>
 
