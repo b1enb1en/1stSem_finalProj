@@ -203,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="profile-container">
             <div class="header">
                 <div class="info">
-                    <h2>Hello, <?= htmlspecialchars($_SESSION['username']) ?></h2>
+                    <h2>Hello, <?php echo htmlspecialchars(ucwords(strtolower($_SESSION['username']))) ?></h2>
                     <p>Manage your account settings here.</p>
                 </div>
             </div>
