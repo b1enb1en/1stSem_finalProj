@@ -68,10 +68,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     .settings-list {
+<<<<<<< HEAD
+      list-style: none;
+=======
         list-style: none;
         margin-top: 10px;
         font-size: 16px;
         color: #1e293b;
+>>>>>>> 25694f6cc528d40a041b603b6ea7dfc0c723b5e5
     }
 
     .settings-list li {
@@ -136,10 +140,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     .profile-main-content {
-        flex-grow: 1;
-        overflow: auto;
-        padding: 20px;
-        background: #0B132A;
+      flex-grow: 1;
+      overflow: auto;
+      padding: 30px; 
+      background: #0B132A;
+    }
+
+
+    /* RESPONSIVE — Mobile */
+    @media (max-width: 882px) {
+
+    .profile-container {
+        margin: 40px auto;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        min-width: 400px;
+        border: 1px solid rgba(111,255,232,0.15);
+        backdrop-filter: blur(6px);
+        border-radius: 14px;
+        padding: 24px;
+        box-shadow: 0 0 20px rgba(111,255,232,0.12);
+        transition: transform 0.2s ease, box-shadow 0.3s ease;
+        width: auto;    
     }
 
     @media (max-width: 882px) {
@@ -193,37 +217,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </li>
         </ul>
     </nav>
+<main class="profile-main-content">
 
-    <main class="profile-main-content">
-        <div class="mobile-header">
-            <button class="toggle-btn" style="font-size:1.5rem;">&#9776;</button>
-            <strong style="font-size:1.2rem;">Profile</strong>
+  <!-- Mobile Header -->
+  <div class="mobile-header">
+    <button class="toggle-btn" style="font-size:1.5rem;">&#9776;</button>
+    <strong style="font-size:1.2rem;">Profile</strong>
+  </div>
+
+  <!-- Glass Container -->
+  <div class="box profile-container">
+
+      <div class="header">
+        <div class="info">
+          <h2 style="color: white">Hello, <?= htmlspecialchars($_SESSION['username']) ?></h2>
+          <p>Manage your account settings here.</p>
         </div>
+      </div>
 
-        <div class="profile-container">
-            <div class="header">
-                <div class="info">
-                    <h2>Hello, <?php echo htmlspecialchars(ucwords(strtolower($_SESSION['username']))) ?></h2>
-                    <p>Manage your account settings here.</p>
-                </div>
-            </div>
+      <!-- Section Title -->
+      <h3 class="section-title" style="color: white">Account Controls</h3>
 
-            <h3 class="section-title">Account Controls</h3>
-            <div class="settings-list">
-                <form method="post" class="confirm-delete">
-                    <input type="hidden" name="action" value="delete_account">
-                    <button class="btn-delete">Delete My Account</button>
-                </form>
-            </div>
+      <!-- Settings List -->
+      <ul class="settings-list">
+        <li class="btn-delete" onclick="document.querySelector('.confirm-delete').submit();">
+          Delete My Account
+        </li>
+      </ul>
 
-            <form method="post" class="confirm-logout">
-                <input type="hidden" name="action" value="logout">
-                <button class="btn-logout">Log Out</button>
-            </form>
-        </div>
-    </main>
+      <!-- Delete Form (hidden button) -->
+      <form method="post" class="confirm-delete" style="display:none;">
+        <input type="hidden" name="action" value="delete_account">
+      </form>
 
-    <script src="/assets/js/script.js"></script>
+      <!-- Logout -->
+      <form method="post" class="confirm-logout">
+        <input type="hidden" name="action" value="logout">
+        <button class="btn-logout">Log Out</button>
+      </form>
+
+  </div>
+</main>
+  <script src="../assets/js/script.js"></script>
 </body>
 
 </html>
