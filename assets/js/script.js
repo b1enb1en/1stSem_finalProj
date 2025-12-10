@@ -1,18 +1,38 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // REFRESH THE PAGE EACH TIME A MINUTE HAS PASSED
-    console.log("Auto-refresh script loaded. Waiting for the next minute...");
+// --- AUTO-REFRESH LOGIC (DASHBOARD ONLY) ---
+    function checkAutoRefresh() {
+        // 1. Check if we are on the Dashboard
+        // We look for the unique clock element that only exists on dashboard.php
+        const clockElement = document.getElementById('server-clock');
 
-    setInterval(function() {
+        // If the clock element DOES NOT exist, stop immediately.
+        // This prevents the refresh on Manage Schedules, Profile, etc.
+        if (!clockElement) {
+            return; 
+        }
+
+        // 2. Update the Clock Text (Optional, keeps the clock ticking)
         const now = new Date();
-        const seconds = now.getSeconds();
+        const timeString = now.toLocaleTimeString('en-US', { 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            second: '2-digit' 
+        });
+        clockElement.innerText = timeString;
 
-        // If the second hand hits "0", refresh immediately
-        if (seconds === 0) {
-            console.log("New minute detected! Refreshing...");
+        // 3. Trigger Refresh Logic
+        // Only refreshes if seconds hit 00 AND we are on the dashboard
+        if (now.getSeconds() === 0) {
+            console.log("Dashboard sync: New minute detected. Refreshing...");
             window.location.reload();
         }
-    }, 1000);
+    }
+
+    // Run the check every 1 second (1000ms)
+    setInterval(checkAutoRefresh, 1000);
     
+    // Run it once immediately to set the clock text without delay
+    checkAutoRefresh();
 
     // Sidebar Toggle Logic
     const toggleBtns = document.querySelectorAll('.toggle-btn');
