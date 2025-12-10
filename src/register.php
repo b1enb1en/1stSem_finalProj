@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $db->prepare('SELECT id FROM users WHERE username = :username LIMIT 1');
     $stmt->execute([':username' => $username]);
     if ($stmt->fetch()) {
-      $errors[] = 'Username already taken.';
+      $errors[] = 'Username already exist.';
     } else {
       $hash = password_hash($password, PASSWORD_DEFAULT);
       $ins = $db->prepare('INSERT INTO users (username, password_hash) VALUES (:u, :p)');
