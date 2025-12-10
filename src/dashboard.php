@@ -98,14 +98,14 @@ $rooms = $stmt->fetchAll();
             <button class="toggle-btn" style="color:#333; font-size:1.5rem;">&#9776;</button>
             <strong style="font-size:1.2rem;">Dashboard</strong>
         </div>
-        <div class="box">
+       <div class="box">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
                 <h2 style="margin:0;">Room Status</h2>
                 <small>
                     <?= $current_day ?>, <?= date('M d, Y') ?> <br>
                     Server Time: <strong style="color:red;"><?= date('h:i:s A') ?></strong>
                 </small>
-            </div>
+            </div> 
 
             <div class="grid">
                 <?php foreach ($rooms as $r): ?>

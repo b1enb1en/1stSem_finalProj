@@ -44,6 +44,7 @@ body {
     flex-direction: column;
     gap: 4px;
     min-width: 400px;
+    margin: 20px 0;
 }
 
 /* -------------------------------------------------
@@ -78,22 +79,6 @@ body {
     width: 100%;
     box-sizing: border-box;
 }
-
-/* PROFILE BOX */
-
-/* .profile-box {
-    border: 1px solid #000000;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-    background:#f56363;
-    max-width: 600px; 
-    margin: 10rem; 
-    text-align: center;
-    min-width: 300px;
-} */
-
-
 
 /* -------------------------------------------------
    STATUS BADGES
@@ -192,10 +177,8 @@ th {
 
 
 /* RESPONSIVE — Mobile */
-/* Note: sidebar / toggle responsive rules moved to sidebar.css.
-   Keep other responsive rules here if any. */
+
 @media (max-width: 882px) {
-    /* ...any remaining mobile-only rules unrelated to sidebar... */
 
     /* show mobile header */
     .mobile-header {
@@ -217,17 +200,6 @@ th {
     .card, .box {  
     margin-top: 20px;
     }
-}
-
-@media (min-width: 882px) {
-    /* .main-content {
-        margin-top: 20px;
-        margin-bottom: 10px;
-    }
-
-    .box {
-        margin-top: 10px;
-    } */
 }
 
 /* STYLES FOR MODAL */

@@ -69,23 +69,25 @@ $rooms = $db->query("SELECT * FROM rooms ORDER BY name")->fetchAll();
   <script src="/assets/css/script.js" defer></script>
   <style>
     .box {
-        margin: 20px 0;
-    } */
+      margin: 20px 0;
+    }
+
+    */
   </style>
 
 </head>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {
     const alertBox = document.getElementById("success-alert");
     if (alertBox) {
-        alertBox.classList.add("show");
+      alertBox.classList.add("show");
 
-        setTimeout(() => {
-            alertBox.classList.remove("show");
-        }, 3000);
+      setTimeout(() => {
+        alertBox.classList.remove("show");
+      }, 3000);
     }
-});
+  });
 </script>
 
 
@@ -160,8 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <input type="time" name="end_time" required>
 
         <div style="grid-column: 1 / -1;">
-          <!-- <button type="submit" class="btn-add" style="width:100%;">Save Class</button> -->
-          <button class="btn-primary">Book Room</button>
+          <button class="btn-primary">Add</button>
         </div>
       </form>
     </div>

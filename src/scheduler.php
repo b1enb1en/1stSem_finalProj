@@ -113,8 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
     <?php endif; ?>
 
-
-
     <div class="box">
       <h3>Find Available Room (One-time Event)</h3>
       <form method="get" style="display:flex; flex-wrap:wrap; gap:10px;">
