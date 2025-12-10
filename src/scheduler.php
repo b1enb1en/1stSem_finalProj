@@ -135,14 +135,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
     </main>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const alertBox = document.getElementById("success-alert");
-            if (alertBox) {
-                alertBox.classList.add("show");
-                setTimeout(() => { alertBox.classList.remove("show"); }, 3000);
-            }
-        });
-    </script>
+    <script src="/assets/js/script.js"></script>
 </body>
 </html>

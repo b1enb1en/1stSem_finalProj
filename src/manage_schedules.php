@@ -217,5 +217,6 @@ $rooms = $db->query("SELECT * FROM rooms ORDER BY name")->fetchAll();
         </div>
     </div>
 
+    <script src="/assets/js/script.js"></script>
 </body>
 </html>
