@@ -6,9 +6,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const now = new Date();
         const seconds = now.getSeconds();
 
-        // Debugging: Watch the console (F12) to see it checking
-        // console.log("Current seconds: " + seconds);
-
         // If the second hand hits "0", refresh immediately
         if (seconds === 0) {
             console.log("New minute detected! Refreshing...");
