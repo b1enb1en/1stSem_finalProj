@@ -34,10 +34,15 @@ SQLite Notes for Room & Schedule Management
     - rooms: id, name, description, status
     - schedules: id, room_id, title, instructor, start_time, end_time, day_of_week, type, ...
 
-1. Start: Go to http://localhost:7000/index.php to see the landing page.
-2. Login/Register: Navigate to http://localhost:7000/src/login.php.
+To run the application, open your terminal in the project root folder and use the following command:
+
+php -S localhost:7000
+
+2. Start: Go to http://localhost:7000/index.php to see the landing page.
+3. Login/Register: Navigate to http://localhost:7000/src/login.php.
     Note: You must Register a user first to log in.
-3. Dashboard: Once logged in, dashboard.php displays real-time room availability (Green for Available, Red for Occupied).
-4. Booking: Use the "Scheduler" page to search for free slots and book rooms.
+4. Dashboard: Once logged in, dashboard.php displays real-time room availability (Green for Available, Red for Occupied).
+5. Booking: Use the "Scheduler" page to search for free slots and book rooms.
+
 
 
