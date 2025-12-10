@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         gap: 20px;
         padding: 10px;
     }
-    
+
     .header .info h2 {
       font-size: 26px;
       color: #1e293b;
@@ -141,9 +141,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       flex-grow: 1;
       overflow: auto;
       padding: 20px; 
-      background: #ffffff;
+      background: 0B132A;
     }
 
+    /* RESPONSIVE — Mobile */
+    @media (max-width: 882px) {
+
+    .profile-container {
+        padding: 20px;
+        margin: 40px auto;
+        width: auto;
+        height: auto;
+        border: 1px solid #e3e6f0;
+        border-radius: 12px;
+        background: #ffffff;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        min-width: 400px;
+    }
+}
   </style>
 <body>
   
@@ -196,8 +214,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <h3 class="section-title">Account Controls</h3>
     <div class="settings-list">
-      <li><span>Change password</span> ➜</li>
-      <li><span>Privacy Settings</span> ➜</li>
+      <!-- <li><span>Change password</span> ➜</li>
+      <li><span>Privacy Settings</span> ➜</li> -->
       <form method="post" class="confirm-delete">
         <input type="hidden" name="action" value="delete_account">
         <button class="btn-delete">Delete My Account</button>

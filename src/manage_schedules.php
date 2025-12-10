@@ -141,33 +141,41 @@ $rooms = $db->query("SELECT * FROM rooms ORDER BY name")->fetchAll();
       <?php unset($_SESSION['message']); ?>
     <?php endif; ?>
 
-    <div class="box">
-      <h3>Add a Class Schedule</h3>
-      <form method="post" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:15px;">
-        <input type="hidden" name="action" value="add_class">
+<div class="box">
+  <h3>Add a Class Schedule</h3>
 
-        <select name="room_id" required>
-          <?php foreach ($rooms as $r): ?><option value="<?= $r['id'] ?>"><?= $r['name'] ?></option><?php endforeach; ?>
-        </select>
-        <input type="text" name="title" placeholder="Subject / Title" required>
-        <input type="text" name="instructor" placeholder="Instructor Name" required>
+  <form method="post" class="schedule-grid-3col">
+    <input type="hidden" name="action" value="add_class">
 
-        <select name="day_of_week" required>
-          <option value="Monday">Monday</option>
-          <option value="Tuesday">Tuesday</option>
-          <option value="Wednesday">Wednesday</option>
-          <option value="Thursday">Thursday</option>
-          <option value="Friday">Friday</option>
-          <option value="Saturday">Saturday</option>
-        </select>
-        <input type="time" name="start_time" required>
-        <input type="time" name="end_time" required>
+    <select name="room_id" required>
+      <?php foreach ($rooms as $r): ?>
+        <option value="<?= $r['id'] ?>"><?= $r['name'] ?></option>
+      <?php endforeach; ?>
+    </select>
 
-        <div style="grid-column: 1 / -1;">
-          <button class="btn-primary">Add</button>
-        </div>
-      </form>
+    <input type="text" name="title" placeholder="Subject / Title" required>
+
+    <input type="text" name="instructor" placeholder="Instructor Name" required>
+
+    <select name="day_of_week" required>
+      <option value="Monday">Monday</option>
+      <option value="Tuesday">Tuesday</option>
+      <option value="Wednesday">Wednesday</option>
+      <option value="Thursday">Thursday</option>
+      <option value="Friday">Friday</option>
+      <option value="Saturday">Saturday</option>
+    </select>
+
+    <input type="time" name="start_time" required>
+
+    <input type="time" name="end_time" required>
+
+    <div class="full-row">
+      <button class="btn-primary">Add</button>
     </div>
+  </form>
+</div>
+
 
     <div class="box">
       <h3>Current Schedules</h3>

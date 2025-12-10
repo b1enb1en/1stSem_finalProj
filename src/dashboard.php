@@ -110,7 +110,7 @@ $rooms = $stmt->fetchAll();
             <div class="grid">
                 <?php foreach ($rooms as $r): ?>
                     <div class="card" style="<?= $r['event_title'] ? 'border-top: 5px solid #dc3545' : 'border-top: 5px solid #28a745' ?>">
-                        <h2 style="color: #333; margin:0 0 10px 0;"><?= htmlspecialchars($r['name'] ?? '') ?></h2>
+                        <h2 style="margin:0 0 10px 0;"><?= htmlspecialchars($r['name'] ?? '') ?></h2>
                         <?php if ($r['event_title']): ?>
                             <span class="status-badge occupied">Occupied</span>
                             <hr style="border:0; border-top:1px solid #eee; margin: 15px 0;">
