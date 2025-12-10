@@ -141,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       flex-grow: 1;
       overflow: auto;
       padding: 20px; 
-      background: 0B132A;
+      background: #0B132A;
     }
 
     /* RESPONSIVE — Mobile */
