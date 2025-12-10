@@ -39,10 +39,10 @@
         </section>
     </main>
 
-    <!-- <footer class="footer py-4">
+    <footer class="footer py-4">
         <div class="container">
             <p class="text-center mb-0 small footer-text">© 2025 ReserBa Silid. All rights reserved.</p>
         </div>
-    </footer> -->
+    </footer>
 </body>
 </html>

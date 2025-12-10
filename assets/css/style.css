@@ -135,3 +135,103 @@ main {
 .footer-text {
     color: rgba(255, 255, 255, 0.7);
 }
+
+/* -------------------------------------------------
+   LOGIN FORM STYLES
+------------------------------------------------- */
+
+.login-wrapper {
+    min-height: 100vh;
+    background: var(--oxford-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(111, 255, 232, 0.2);
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 25px rgba(111, 255, 232, 0.2);
+}
+
+.login-title {
+    color: var(--fluorescent-cyan);
+    text-shadow: 0 0 10px rgba(111, 255, 232, 0.5);
+    letter-spacing: 1px;
+}
+
+.universal-input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(111, 255, 232, 0.3);
+    color: white;
+}
+
+.universal-input:focus {
+    border-color: var(--fluorescent-cyan);
+    box-shadow: 0 0 10px rgba(111, 255, 232, 0.4);
+}
+
+.login-link {
+    color: var(--fluorescent-cyan);
+    text-decoration: none;
+}
+
+.login-link:hover {
+    text-shadow: 0 0 8px rgba(111, 255, 232, 0.6);
+}
+
+
+/* -------------------------------------------------
+   REGISTER FORM STYLES (MATCH LOGIN)
+------------------------------------------------- */
+
+.register-wrapper {
+    min-height: 100vh;
+    background: var(--oxford-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.register-card {
+    width: 100%;
+    max-width: 420px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(111, 255, 232, 0.2);
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 25px rgba(111, 255, 232, 0.2);
+}
+
+.register-title {
+    color: var(--fluorescent-cyan);
+    text-shadow: 0 0 10px rgba(111, 255, 232, 0.5);
+    letter-spacing: 1px;
+}
+
+/* Error box */
+.error-box {
+    background: rgba(255, 0, 0, 0.12);
+    border: 1px solid rgba(255, 0, 0, 0.4);
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    color: #ff7b7b;
+}
+
+/* Link */
+.register-link {
+    color: var(--fluorescent-cyan);
+    text-decoration: none;
+}
+
+.register-link:hover {
+    text-shadow: 0 0 8px rgba(111, 255, 232, 0.6);
+}
+
