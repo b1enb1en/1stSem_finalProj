@@ -1,60 +1,58 @@
 <?php
-session_start();
-require_once 'db_init.php';
-$db = getDB();
-$errors = [];
+    session_start();
+    require_once 'db_init.php';
+    $db = getDB();
+    $errors = [];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $username = strtolower(trim($_POST['username'] ?? ''));
-  $password = $_POST['password'] ?? '';
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $username = strtolower(trim($_POST['username'] ?? ''));
+        $password = $_POST['password'] ?? '';
 
-  if ($username === '' || $password === '') {
-    $errors[] = 'All fields are required.';
-  } else {
-    // 1. Fetch the user
-    $stmt = $db->prepare('SELECT * FROM users WHERE username = :username LIMIT 1');
-    $stmt->execute([':username' => $username]);
-    $user = $stmt->fetch();
+        if ($username === '' || $password === '') {
+            $errors[] = 'All fields are required.';
+        } else {
+            // 1. Fetch the user
+            $stmt = $db->prepare('SELECT * FROM users WHERE username = :username LIMIT 1');
+            $stmt->execute([':username' => $username]);
+            $user = $stmt->fetch();
 
-    // 2. Check: Does user exist? AND Is password correct?
-    // We combine them into one IF statement.
-    if ($user && password_verify($password, $user['password_hash'])) {
-      // SUCCESS: Log them in
-      $_SESSION['user_id'] = $user['id'];
-      $_SESSION['username'] = $user['username'];
-      header('Location: dashboard.php');
-      exit;
-    } else {
-      // FAILED: Generic error message (More secure)
-      $errors[] = 'Incorrect username or password.';
+            // 2. Check: Does user exist? AND Is password correct?
+            if ($user && password_verify($password, $user['password_hash'])) {
+                // SUCCESS: Log them in
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+                header('Location: dashboard.php');
+                exit;
+            } else {
+                // FAILED: Generic error message (More secure)
+                $errors[] = 'Incorrect username or password.';
+            }
+        }
     }
-  }
-}
 ?>
+
 <!doctype html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>Login</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link rel="stylesheet" href="/assets/css/index.css">
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/index.css">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    @media (max-width: 882px) {
-      /* .login-card {
-        width: 90%;
-      } */
-    }
-  </style>
+        @media (max-width: 882px) {
+            /* .login-card { width: 90%; } */
+        }
+    </style>
 </head>
 
 <body>
@@ -65,9 +63,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h2 class="text-center mb-4 login-title">Welcome Back</h2>
 
             <?php if ($errors): ?>
-            <div class="error-box">
-              <?php foreach ($errors as $e) echo "<p style='margin:0'>$e</p>"; ?>
-            </div>
+                <div class="error-box">
+                    <?php foreach ($errors as $e) echo "<p style='margin:0'>$e</p>"; ?>
+                </div>
             <?php endif; ?>
 
             <form method="POST" action="">

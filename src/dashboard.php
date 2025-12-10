@@ -1,39 +1,39 @@
 <?php
-session_start();
-require_once 'db_init.php';
-$db = getDB();
+    session_start();
+    require_once 'db_init.php';
+    $db = getDB();
 
-if (empty($_SESSION['user_id'])) {
-    header('Location: login.php');
-    exit;
-}
+    if (empty($_SESSION['user_id'])) {
+        header('Location: login.php');
+        exit;
+    }
 
-$username = $_SESSION['username'];
-date_default_timezone_set('Asia/Manila');
-$current_day = date('l');
-$current_time = date('H:i');
-$current_date = date('Y-m-d');
+    $username = $_SESSION['username'];
+    date_default_timezone_set('Asia/Manila');
+    $current_day = date('l');
+    $current_time = date('H:i');
+    $current_date = date('Y-m-d');
 
-$sql = "SELECT r.*,
-    (SELECT title FROM schedules s 
-     WHERE s.room_id = r.id 
-     AND (
-        (type = 'fixed' AND day_of_week = :day AND :time >= start_time AND :time < end_time)
-        OR
-        (type = 'booking' AND :date = date(start_time) AND :time >= strftime('%H:%M', start_time) AND :time < strftime('%H:%M', end_time))
-     ) LIMIT 1) as event_title,
-    (SELECT instructor FROM schedules s 
-     WHERE s.room_id = r.id 
-     AND (
-        (type = 'fixed' AND day_of_week = :day AND :time >= start_time AND :time < end_time)
-        OR
-        (type = 'booking' AND :date = date(start_time) AND :time >= time(start_time) AND :time < time(end_time))
-     ) LIMIT 1) as instructor
-    FROM rooms r ORDER BY r.name ASC";
+    $sql = "SELECT r.*,
+        (SELECT title FROM schedules s 
+         WHERE s.room_id = r.id 
+         AND (
+            (type = 'fixed' AND day_of_week = :day AND :time >= start_time AND :time < end_time)
+            OR
+            (type = 'booking' AND :date = date(start_time) AND :time >= strftime('%H:%M', start_time) AND :time < strftime('%H:%M', end_time))
+         ) LIMIT 1) as event_title,
+        (SELECT instructor FROM schedules s 
+         WHERE s.room_id = r.id 
+         AND (
+            (type = 'fixed' AND day_of_week = :day AND :time >= start_time AND :time < end_time)
+            OR
+            (type = 'booking' AND :date = date(start_time) AND :time >= time(start_time) AND :time < time(end_time))
+         ) LIMIT 1) as instructor
+        FROM rooms r ORDER BY r.name ASC";
 
-$stmt = $db->prepare($sql);
-$stmt->execute([':day' => $current_day, ':time' => $current_time, ':date' => $current_date]);
-$rooms = $stmt->fetchAll();
+    $stmt = $db->prepare($sql);
+    $stmt->execute([':day' => $current_day, ':time' => $current_time, ':date' => $current_date]);
+    $rooms = $stmt->fetchAll();
 ?>
 
 <!doctype html>
@@ -48,14 +48,11 @@ $rooms = $stmt->fetchAll();
     <link rel="stylesheet" href="/assets/css/db_styles.css">
     <link rel="stylesheet" href="/assets/css/sidebar.css">
 
-    <script src="/assets/css/script.js" defer></script>
-
     <style>
-    .box {
-        margin: 20px 0;
-    } */
-  </style>
-
+        .box {
+            margin: 20px 0;
+        } */
+    </style>
 </head>
 
 <body>
@@ -89,7 +86,6 @@ $rooms = $stmt->fetchAll();
                     <i class="bi bi-gear"></i> Settings
                 </a>
             </li>
-
         </ul>
     </nav>
 
@@ -98,7 +94,8 @@ $rooms = $stmt->fetchAll();
             <button class="toggle-btn" style="font-size:1.5rem;">&#9776;</button>
             <strong style="font-size:1.2rem;">Dashboard</strong>
         </div>
-       <div class="box">
+
+        <div class="box">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
                 <h2 style="margin:0;">Room Status</h2>
                 <small>
@@ -127,6 +124,8 @@ $rooms = $stmt->fetchAll();
             </div>
         </div>
     </main>
+
+    <script src="/assets/js/script.js"></script>
 </body>
 
 </html>
