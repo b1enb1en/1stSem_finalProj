@@ -93,9 +93,9 @@ document.addEventListener("DOMContentLoaded", () => {
       </li>
 
       <li>
-        <a href="profile.php">
-          <i class="bi bi-person-circle"></i> Profile
-        </a>
+          <a href="settings.php">
+            <i class="bi bi-gear"></i> Settings
+          </a>
       </li>
 
     </ul>
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   <main class="main-content">
     <div class="mobile-header">
-      <button class="toggle-btn" style="color:#333; font-size:1.5rem;">&#9776;</button>
+      <button class="toggle-btn" style="font-size:1.5rem;">&#9776;</button>
       <strong style="font-size:1.2rem;">Scheduler</strong>
     </div>
 

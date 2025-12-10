@@ -47,13 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         gap: 20px;
         padding: 10px;
     }
-
-    .header {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      margin-bottom: 40px;
-    }
+    
     .header .info h2 {
       font-size: 26px;
       color: #1e293b;
@@ -179,8 +173,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </li>
 
             <li>
-            <a href="profile.php" class="active">
-                <i class="bi bi-person-circle"></i> Profile
+            <a href="settings.php" class="active">
+                <i class="bi bi-gear"></i> Settings
             </a>
             </li>
 
@@ -188,7 +182,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </nav>
   <main class="profile-main-content">
     <div class="mobile-header">
-      <button class="toggle-btn" style="color:#333; font-size:1.5rem;">&#9776;</button>
+      <button class="toggle-btn" style="font-size:1.5rem;">&#9776;</button>
       <strong style="font-size:1.2rem;">Profile</strong>
     </div>
 

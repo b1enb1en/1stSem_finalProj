@@ -85,8 +85,8 @@ $rooms = $stmt->fetchAll();
             </li>
 
             <li>
-                <a href="profile.php">
-                    <i class="bi bi-person-circle"></i> Profile
+                <a href="settings.php">
+                    <i class="bi bi-gear"></i> Settings
                 </a>
             </li>
 
@@ -95,7 +95,7 @@ $rooms = $stmt->fetchAll();
 
     <main class="main-content">
         <div class="mobile-header">
-            <button class="toggle-btn" style="color:#333; font-size:1.5rem;">&#9776;</button>
+            <button class="toggle-btn" style="font-size:1.5rem;">&#9776;</button>
             <strong style="font-size:1.2rem;">Dashboard</strong>
         </div>
        <div class="box">
